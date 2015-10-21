@@ -1,2 +1,3 @@
 # coursera_java
-# somthing I stopped more than one year ago, now I am back!
+# I did not contribute anything to my github repositories in the past one year
+# now I am back!
