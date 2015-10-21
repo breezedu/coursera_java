@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
-import edu.duke.URLResource;
+import edu.duke.*;
 
 public class Class_01_hw_RE {
 
@@ -23,17 +23,31 @@ public class Class_01_hw_RE {
 			String line = scanUrl.nextLine();
 			System.out.println(line);
 		}
+		System.out.println("Ok with first try.");
 		
 		scanUrl.close();
 		
 		
-		System.out.println("\n The second try!");
+		//read txt document from internet with URLResource class in edu.duke path
+		System.out.println("\n The second try of URL!");
 		URLResource hello = new URLResource("http://www.dukelearntoprogram.com/java/hello_unicode.txt");
 
 		//Type mismatch: cannot convert from element type Object to String
 		 for(String line : hello.lines()){
 		 	System.out.println(line);
 		 	}
+		 System.out.println("Ok with second try.");
+		 
+		 
+		 
+		 //read txt document from local path
+		 System.out.println("\n \n The third try, read from local document!");
+		 FileResource FRes = new FileResource("src/files/hello_unicode.txt");
+		 
+		 for(String line : FRes.lines()){
+			 System.out.println(line);
+		 }
+		 System.out.println("Ok with third try.");
 		 
 		
 	} //end of sayHello object
