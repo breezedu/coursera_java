@@ -10,9 +10,9 @@ public class Class_02_DirReader {
 		DirectoryResource dr = new DirectoryResource();
 		
 		for(File f : dr.selectedFiles()){
-			System.out.println(f);
+			System.out.println("name:" + f);
 			
-			String routine = f.getAbsolutePath();
+			String routine = f.getParent() ;// f.getAbsolutePath();
 			System.out.println(routine);
 		}//end for loop;
 	}//end checkDir() method;
