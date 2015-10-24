@@ -30,13 +30,15 @@ public class Week2_FindWebLinks {
 			
 			if(UpCaseURL.contains("YOUTUBE.COM")){
 				
-				int start = currUrl.indexOf("href=\"");
-				int stop = currUrl.indexOf("\">");
+				int pos = UpCaseURL.indexOf("YOUTUBE>COM");
+				
+				int start = currUrl.lastIndexOf("href=\"", pos);
+				int stop = currUrl.indexOf("\">", pos);
 				
 				//get the substring between start and stop indices;
 				String pureURL = currUrl.substring(start + 6, stop);
 				
-			//	System.out.println("URL: " + currUrl);
+				System.out.println("URL: " + currUrl);
 				System.out.println("URL: " + pureURL +"\n");
 				
 				urlArray.add(pureURL);
@@ -51,7 +53,7 @@ public class Week2_FindWebLinks {
 	
 	
 	
-	
+	//transfer lower case letters into upper case letters;
 	private String toUpCase(String str) {
 		// TODO Auto-generated method stub
 		
@@ -75,15 +77,22 @@ public class Week2_FindWebLinks {
 
 
 
-
+	/**********
+	 * The main() method; 
+	 * @param args
+	 */
 	public static void main(String[] args){
 		
+		//create a new FindWebLinks object FWL
 		Week2_FindWebLinks FWL = new Week2_FindWebLinks();
 		
+		//get the webpage; 
 		String URL = "http://www.dukelearntoprogram.com/course2/data/manylinks.html" ;
 		
+		//call FWL.findURLS() method to get all the urls contain "youtube.com", save them to an arrayList;
 		ArrayList<String> urlAL = FWL.findURLs(URL);
 		
+		//printout the size of url-arraylist; 
 		System.out.println("There are " + urlAL.size() + " youtube links in the webpage.");
 		
 	}//end main();
