@@ -43,12 +43,22 @@ public class Week2_FindAGene {
 		
 	}//end findGene() method;
 	
+	
+	
+	/**********
+	 * Transfer every lower case letter in the string into upper case;
+	 * @param inString
+	 * @return
+	 */
 	public String low2Up(String inString){
 		
+		//if the string is empty, return "";
 		if(inString.length() == 0) return "";
 				
+		//init a new out string "";
 		String outString = "";
 		
+		//check every character in the inString, if it is lower case, transfer into upper case;
 		for(int i=0; i<inString.length(); i++){
 			
 			char currChar = inString.charAt(i);
@@ -64,6 +74,8 @@ public class Week2_FindAGene {
 			
 		}//end for loop;
 		
+		
+		//return the new string, with upper case letters only.
 		return outString;
 	}//end low2Up() method; 
 	
