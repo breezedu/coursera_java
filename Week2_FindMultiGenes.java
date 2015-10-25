@@ -49,7 +49,7 @@ public class Week2_FindMultiGenes {
 			//find the stop codon from current start codon
 			int stop = findStopCodon(DNA, start);
 			
-			//add 
+			//get the gene between start and stop codons, add the gene to arrayList 
 			if(stop > start){
 				
 				//get the current gene
@@ -75,6 +75,21 @@ public class Week2_FindMultiGenes {
 	/*********
 	 * Pass one start codon position to the method
 	 * Find out the first stop codon after that start codon, then return it's position
+	 * Algorithm: 
+	 * 1 once the start codon is located
+	 * 2 divide all bases following the start codon into 3-base codons
+	 * 3 check each codon to see if any codon is equal to "TAG", "TGA", or "TAA"
+	 * 4 if we get any hit, then that first hit is the stop codon
+	 * 5 return the index position of that stop codon
+	 * 6 if no stop codon exist in this "frame", then return -1 as the stop codon position
+	 * 
+	 * example: GAATGACTGATAGATATGCTTGTA
+	 * 1 locate the start codon ATG at index 2
+	 * 2 divide and formate the frame: GA-ATG-ACT-GAT-AGA-TAT-GCT-TGA-A
+	 * 3 the TGA in the end is the stop codon
+	 * 4 return the index of TGA: 20
+	 * 5 the gene: from 2 to 20+3;
+	 * 
 	 * @param DNA
 	 * @param start
 	 * @return
@@ -82,10 +97,12 @@ public class Week2_FindMultiGenes {
 	private int findStopCodon(String DNA, int start) {
 		// TODO Auto-generated method stub
 		
+		//once the start codon is located, the 'FRAME' of each 3-base codon is formated.
 		for(int i = start + 3; i<DNA.length()-3; i += 3){
 			
 			//if current 3-base subString is equal to any of three stop codon, return curren index;
 			String currFrameString = DNA.substring(i, i+3);
+			
 			if(currFrameString.equals("TAG")){
 				return i;
 				
