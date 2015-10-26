@@ -56,7 +56,9 @@ public class Week2_FindMultiGenes {
 				String currGene = dnaOri.substring(start, stop+3);
 				
 				//add the current gene to gene-ArrayList, and print out the gene sequence
-				geneAL.add( currGene );			
+				if( !geneAL.contains(currGene))
+					geneAL.add( currGene );			
+				
 				System.out.println("From: " + start + " to " + stop + " Gene: " + currGene );
 				
 			} //end if stop > start condition
