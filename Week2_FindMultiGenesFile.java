@@ -3,6 +3,7 @@ package coursera_java_duke;
 import java.util.ArrayList;
 
 import edu.duke.FileResource;
+import edu.duke.StorageResource;
 
 /**************
  * 
@@ -50,7 +51,9 @@ public class Week2_FindMultiGenesFile {
 				String currGene = dnaOri.substring(start, stop+3);
 				
 				//add the current gene to gene-ArrayList, and print out the gene sequence
-				geneAL.add( currGene );			
+				if( !geneAL.contains(currGene))
+					geneAL.add( currGene );			
+				
 				System.out.println("From: " + start + " to " + stop + " Gene: " + currGene );
 				
 			} //end if stop > start condition
@@ -145,7 +148,7 @@ public class Week2_FindMultiGenesFile {
 			
 		}//end for loop
 		
-		System.out.println("CGCount " + CGCount + " Length: " + len + " Ration: " + (float)CGCount/len);
+		System.out.println("CGCount " + CGCount + " Length: " + len + " Ratio: " + (float)CGCount/len);
 		return (float)CGCount/len;
 	}//end of calCGRatio() method;
 
@@ -156,25 +159,33 @@ public class Week2_FindMultiGenesFile {
 	 */
 	public static void main(String[] args){
 		
-		
+		//create a FindMultiGenesFile object FMG
 		Week2_FindMultiGenesFile FMG = new Week2_FindMultiGenesFile();
 		
+		//read a DNA sequence from file
 		String dna = FMG.readStrFromFile();
 		
+		//call FMG.findGenes() method to get all genes, and store all genes in an ArrayList
 		ArrayList<String> geneArrayList = FMG.findGenes(dna);
 		
-		
+		//store all genes into a document
+		StorageResource dnaStore = new StorageResource();
 		
 		System.out.println("\n There are " + geneArrayList.size() + " genes. ");
 		
 		int longerthan60 = 0;
 		int CGGreaterthan35 = 0;
 		for(int i=0; i<geneArrayList.size(); i++){
-
+			
+			if(!dnaStore.contains(geneArrayList.get(i)))
+				dnaStore.add(geneArrayList.get(i));
+			
 			if(geneArrayList.get(i).length() > 60) longerthan60++;
 			if(FMG.calCGRatio(geneArrayList.get(i)) > 0.35) CGGreaterthan35++;
 			
 		}
+		
+		System.out.println("dnaStore.size: " + dnaStore.size());
 		
 		System.out.println("\n There are " + geneArrayList.size() + " genes. ");
 		System.out.println("There are " + longerthan60 + " genes longer than 60.");
