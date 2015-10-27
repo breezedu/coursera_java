@@ -35,19 +35,23 @@ public class Week02_FindMultiGenesFAKE {
 		int start = -1;
 		while(true){
 			
-			start = DNA.indexOf("ATG", start+1);
+			int loc = DNA.indexOf("ATG", start);
 			
-			if (start == -1) break;			
+			if (loc == -1) break;			
 			
-			int stop = findStopCodon(DNA, start);
+			int stop = findStopCodon(DNA, loc);
 			
-			if(stop < DNA.length() && (stop - start) % 3 == 0){
+			if(stop < DNA.length()){
 				
-				dnaAL.add( dna.substring(start, stop+3));
-				System.out.println("GENE: from " + start + " to " + stop +": " + 
-									dna.substring(start, stop+3));
-				
+				dnaAL.add( dna.substring(loc, stop+3));
+				System.out.println("GENE: from " + loc + " to " + stop +": " + 
+									dna.substring(loc, stop+3));
+			
+				//find next gene after this gene, what a joke! again!
+				loc = stop;
 			}//end if
+			
+			start = loc + 3;
 		}//end while
 		
 	}//end findGenes() method;
@@ -61,9 +65,9 @@ public class Week02_FindMultiGenesFAKE {
 		int stop3 = DNA.indexOf("TAA", start + 3);
 		
 		//return the minimum stop which is not -1;
-		if (stop1 == -1) stop1 = DNA.length();
-		if (stop2 == -1) stop2 = DNA.length();
-		if (stop3 == -1) stop3 = DNA.length();
+		if (stop1 == -1 || (stop1 - start)%3 != 0) stop1 = DNA.length();
+		if (stop2 == -1 || (stop2 - start)%3 != 0) stop2 = DNA.length();
+		if (stop3 == -1 || (stop3 - start)%3 != 0) stop3 = DNA.length();
 		
 		return Math.min(stop1, Math.min(stop2, stop3));
 	}//end findStopCodon() method;
