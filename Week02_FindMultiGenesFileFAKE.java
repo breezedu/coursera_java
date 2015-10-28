@@ -32,6 +32,10 @@ public class Week02_FindMultiGenesFileFAKE {
 		
 		//transfer all lower case letter into upper case;
 		String DNA = dna.toUpperCase();
+		
+		int CTGCount = countCTG(DNA);
+		System.out.println("There are " + CTGCount + " CTGs in the DNA.");
+		
 		ArrayList<String> dnaAL = new ArrayList<String>();
 		
 		int start = 0;
@@ -82,8 +86,11 @@ public class Week02_FindMultiGenesFileFAKE {
 		//check how many genes in the dnaAL longer than 60;
 		int longerthan60 = 0;
 		int ratio35 = 0; 
+		int longGene = 0;
 		
 		for(String gene : dnaAL){
+			
+			if(gene.length() > longGene) longGene = gene.length();
 			
 			if(gene.length() > 60) longerthan60++;
 			
@@ -91,12 +98,28 @@ public class Week02_FindMultiGenesFileFAKE {
 		
 		}//end for loop;
 		
+		System.out.println("The longest gene's length is: " + longGene);
 		System.out.println("\nThere are " + longerthan60 + " genes longer than 60");
 		System.out.println("There are " + ratio35 + " genes with CG ratio > 0.35");
 		
 	}//end findGenes() method;
 
 	
+	private int countCTG(String dna) {
+		// TODO Auto-generated method stub
+		
+		int len = dna.length()-3;
+		int count = 0;
+		for(int i=0; i<len; i++){
+			
+			if( dna.substring(i, i+3).equals("CTG"))
+				count++;
+		}
+		
+		return count;
+	}//end countCTG() method;
+
+
 	private boolean ratioGreaterthan35(String gene) {
 		// TODO Auto-generated method stub
 		
