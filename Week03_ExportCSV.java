@@ -36,6 +36,9 @@ public class Week03_ExportCSV {
 		
 		
 		//For part 3:
+		//Write a void method named listExportersTwoProducts that has three parameters,
+		parser = fr.getCSVParser();
+		listExportersTwoProducts(parser, "gold", "diamond");
 		
 		
 		//return the parser
@@ -43,6 +46,27 @@ public class Week03_ExportCSV {
 	}//end tester() method;
 	
 	
+	
+	
+	private void listExportersTwoProducts(CSVParser parser, String element1, String element2) {
+		// TODO Auto-generated method stub
+		
+		for(CSVRecord record : parser){
+			
+			String Exports = record.get("Exports");
+			if(Exports.contains(element1) && Exports.contains(element2)){
+				
+				System.out.println("Part II hit: " + record.get("Country") + " " + record.get("Exports"));
+			}
+			
+		}//end for loop;
+		
+		
+	}//end listExportersTwoProducts() method;
+
+
+
+
 	//a method named countryInfo that has two parameters, parser is a CSVParser and country is a String. 
 	//This method returns a string of information about the country or returns “NOT FOUND” 
 	public void countryInfo(CSVParser parser, String country){
