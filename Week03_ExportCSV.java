@@ -41,13 +41,56 @@ public class Week03_ExportCSV {
 		listExportersTwoProducts(parser, "gold", "diamond");
 		
 		
+		
+		//For part 4:
+		//Write a method named numberOfExporters, which has two parameters, 
+		//parser is a CSVParser, and exportItem is a String. 
+		//This method returns the number of countries that export exportItem. 
+		parser = fr.getCSVParser();
+		numberOfExporters(parser, "gold");
+		
+		
+		
+		//For part 5:
+		
+		
 		//return the parser
 		//return parser;
 	}//end tester() method;
 	
 	
 	
-	
+	/*********
+	 * Part 4
+	 * @param parser
+	 * @param element
+	 */
+	private void numberOfExporters(CSVParser parser, String element) {
+		// TODO Auto-generated method stub
+		int count = 0; //the count of countries with the exporting element
+		
+		for(CSVRecord record : parser){
+			
+			String exports = record.get("Exports");
+			if(exports.contains(element))
+				count ++;
+			
+		}//end for loop;
+		
+		
+		System.out.println("There are " + count + " countries export " + element + ". ");
+		
+	}//end numberOfExporters() method;
+
+
+
+
+	/***********
+	 * Part 3
+	 * @param parser
+	 * @param element1
+	 * @param element2
+	 */
 	private void listExportersTwoProducts(CSVParser parser, String element1, String element2) {
 		// TODO Auto-generated method stub
 		
@@ -69,6 +112,11 @@ public class Week03_ExportCSV {
 
 	//a method named countryInfo that has two parameters, parser is a CSVParser and country is a String. 
 	//This method returns a string of information about the country or returns “NOT FOUND” 
+	/**********
+	 * Part 2
+	 * @param parser
+	 * @param country
+	 */
 	public void countryInfo(CSVParser parser, String country){
 		
 		for(CSVRecord record : parser){
