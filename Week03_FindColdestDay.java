@@ -45,6 +45,12 @@ public class Week03_FindColdestDay {
 	//test the method of coldestHourInFile()
 	public void testColdestHourInFile(){
 		
+		System.out.println("****************************************************");
+		System.out.println("Part One: ");
+		
+		System.out.println("Select one file to find out the codest temperature:");
+		
+		System.out.println("****************************************************");		
 		//get the file
 		FileResource file = new FileResource();
 		
@@ -65,6 +71,14 @@ public class Week03_FindColdestDay {
 	//You should also write a void method named testFileWithColdestTemperature() to test this method. 
 	//Note that after determining the filename, you could call the method coldestHourInFile to determine the coldest temperature on that day.
 	public void fileWithColdestTemperature (){
+		
+		System.out.println("\n\n\n");
+		System.out.println("****************************************************");
+		System.out.println("Part Two: ");
+		
+		System.out.println("Select the files to find out the codest temperature:");
+		
+		System.out.println("****************************************************");		
 		
 		//select the CSV file
 		DirectoryResource dr = new DirectoryResource();
@@ -115,6 +129,15 @@ public class Week03_FindColdestDay {
 	
 	
 	
+	
+	
+	
+	
+	
+	/************************
+	 * the main()
+	 * @param args
+	 */
 	public static void main(String[] args){
 		
 		Week03_FindColdestDay W3_FCD = new Week03_FindColdestDay(); 
@@ -123,7 +146,7 @@ public class Week03_FindColdestDay {
 		
 		W3_FCD.fileWithColdestTemperature();
 		
-	}
+	}//end main();
 	
 
 }//ee
