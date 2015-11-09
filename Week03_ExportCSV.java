@@ -52,6 +52,10 @@ public class Week03_ExportCSV {
 		
 		
 		//For part 5:
+		//Write a void method named bigExporters that has two parameters, parser is a CSVParser, 
+		//and amount is a String in the format of a dollar sign $999,999
+		parser = fr.getCSVParser();
+		bigExporters(parser, "$999,999,999");
 		
 		
 		//return the parser
@@ -60,6 +64,24 @@ public class Week03_ExportCSV {
 	
 	
 	
+	private void bigExporters(CSVParser parser, String money) {
+		// TODO Auto-generated method stub
+		
+		for(CSVRecord record : parser){
+			
+			String currValue = record.get("Value (dollars)");
+			
+			if(currValue.length() > money.length()){
+				
+				System.out.println("Count: " + record.get("Country") + ", " + record.get("Value (dollars)") );
+			}
+			
+		}//end for parser loop;
+		
+	}//end bigExporters() method;
+
+
+
 	/*********
 	 * Part 4
 	 * @param parser
@@ -78,7 +100,7 @@ public class Week03_ExportCSV {
 		}//end for loop;
 		
 		
-		System.out.println("There are " + count + " countries export " + element + ". ");
+		System.out.println("\nPart IV:\n There are " + count + " countries export " + element + ". ");
 		
 	}//end numberOfExporters() method;
 
@@ -93,13 +115,14 @@ public class Week03_ExportCSV {
 	 */
 	private void listExportersTwoProducts(CSVParser parser, String element1, String element2) {
 		// TODO Auto-generated method stub
+		System.out.println();
 		
 		for(CSVRecord record : parser){
 			
 			String Exports = record.get("Exports");
 			if(Exports.contains(element1) && Exports.contains(element2)){
 				
-				System.out.println("Part II hit: " + record.get("Country") + " " + record.get("Exports"));
+				System.out.println("Part III hit: " + record.get("Country") + " " + record.get("Exports"));
 			}
 			
 		}//end for loop;
@@ -118,6 +141,8 @@ public class Week03_ExportCSV {
 	 * @param country
 	 */
 	public void countryInfo(CSVParser parser, String country){
+		
+		System.out.println("Part II");
 		
 		for(CSVRecord record : parser){
 			
