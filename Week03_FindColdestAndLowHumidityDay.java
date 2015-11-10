@@ -94,7 +94,7 @@ public class Week03_FindColdestAndLowHumidityDay {
 		
 		for(CSVRecord R : parse){
 			
-			System.out.println(codestF.getName() + " " + R.get("TimeEST") + "  " + R.get("TemperatureF") );
+			System.out.println(codestF.getName() + " " + R.get("DateUTC") + "  " + R.get("TemperatureF") );
 		}
 		
 		//String file_name = f;
@@ -175,6 +175,35 @@ public class Week03_FindColdestAndLowHumidityDay {
 	}//end lowestHumidityInManyFiles() method
 	
 	
+	
+	
+	//Part 5 averageTemperatureInFile
+	/****************
+	 * one parameter, a CSVParser named parser. 
+	 * This method returns a double that represents the average temperature in the file. 
+	 * @return 
+	 */
+	public double averageTemperatureInFile(CSVParser parser){
+		
+		int num = 0;		//total records of temperature
+		double sum = 0;		//sum up all recorded temperatures
+		
+		//check each record, sum up;
+		for(CSVRecord record : parser){
+			
+			double currTemp = Double.parseDouble( record.get("TemperatureF") );
+			sum += currTemp;
+			num++;
+			
+		}//end for CSVRecord lop;
+		
+		
+		//return the average temperature for that file;
+		return sum/num;
+		
+	}//end averageTemperatureInFile() method;
+	
+	
 	/************************
 	 * the main()
 	 * @param args
@@ -191,10 +220,43 @@ public class Week03_FindColdestAndLowHumidityDay {
 		
 		W3_FCD.testLowestHumidityInManyFiles();
 		
+		W3_FCD.testAverageTemperatureInFile();
+		
 	}//end main();
 
 
 	
+	
+	
+	//Part 5 testAverageTemperatureInFile();
+	/***************************
+	 * a void method named testAverageTemperatureInFile() to test averageTemperatureInFile() method
+	 */
+	private void testAverageTemperatureInFile() {
+		// TODO Auto-generated method stub
+		System.out.println("\n\n");
+		System.out.println("****************************************************");
+		System.out.println("Part Four: ");
+		
+		System.out.println("Select the file to find out the average temperature:");
+		
+		System.out.println("****************************************************");	
+		
+		
+		FileResource fr = new FileResource();
+		CSVParser parser = fr.getCSVParser();
+		
+		double temp = averageTemperatureInFile( parser );
+		
+		System.out.println(" The average temperature in that file is: " + temp );
+		
+	}
+
+
+
+
+
+
 	//Part 4  testLowestHumidityInManyFiles() 
 	/****************
 	 * print the lowest humidity AND the time the lowest humidity occurre
@@ -208,6 +270,7 @@ public class Week03_FindColdestAndLowHumidityDay {
 		System.out.println("Select several files to find out the lowest humidity:");
 		
 		System.out.println("****************************************************");	
+		
 		CSVRecord csv = lowestHumidityInManyFiles();
 		
 		System.out.println("The lowest humidity in File is: " + csv.get("Humidity") +" at " + csv.get("DateUTC") );
@@ -261,7 +324,7 @@ public class Week03_FindColdestAndLowHumidityDay {
 		
 		CSVRecord coldestR = coldestHourInFile(parse);
 		
-		System.out.println("The coldest hour is: " + coldestR.get("TimeEST") + ", " + coldestR.get("TemperatureF"));
+		System.out.println("The coldest hour is: " + coldestR.get("DateUTC") + ", " + coldestR.get("TemperatureF"));
 		
 	}//end testCodestDay()
 	
