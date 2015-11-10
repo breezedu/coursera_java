@@ -135,6 +135,45 @@ public class Week03_FindColdestAndLowHumidityDay {
 	
 	
 	
+	//Part 4, lowestHumidityInManyFiles()
+	/**********
+	 * This method returns a CSVRecord that has the lowest humidity over all the files. 
+	 * If there is a tie, then return the first such record that was found. 
+	 * You should also write a void method named testLowestHumidityInManyFiles() 
+	 * to test this method and to print the lowest humidity AND the time the lowest humidity occurred. 
+	 * @return 
+	 * 
+	 */
+	public CSVRecord lowestHumidityInManyFiles(){
+		
+		CSVRecord lowestHumidity = null;
+		
+		//get the directory
+		DirectoryResource dr = new DirectoryResource();
+		
+		for(File file : dr.selectedFiles()){
+			
+			
+			//get the file
+			FileResource fr = new FileResource(file);
+			
+			//get the CSV praser
+			CSVParser praser = fr.getCSVParser();
+			
+			//get the lowest Humidity in that document 'file'
+			CSVRecord currLowHumidity = lowestHumidityInFile(praser);
+			
+			//compare and assign the CSV record with lower humidity to lowestHumidity;
+			if(lowestHumidity == null || Double.parseDouble(currLowHumidity.get("Humidity")) < Double.parseDouble( lowestHumidity.get("Humidity")))
+				lowestHumidity = currLowHumidity;
+			
+		}//end for File loop;
+		
+		
+		return lowestHumidity;
+		
+	}//end lowestHumidityInManyFiles() method
+	
 	
 	/************************
 	 * the main()
@@ -150,10 +189,36 @@ public class Week03_FindColdestAndLowHumidityDay {
 		
 		W3_FCD.testLowestHumidityInFile();
 		
+		W3_FCD.testLowestHumidityInManyFiles();
+		
 	}//end main();
 
 
 	
+	//Part 4  testLowestHumidityInManyFiles() 
+	/****************
+	 * print the lowest humidity AND the time the lowest humidity occurre
+	 */
+	private void testLowestHumidityInManyFiles() {
+		// TODO Auto-generated method stub
+		System.out.println("\n\n");
+		System.out.println("****************************************************");
+		System.out.println("Part Four: ");
+		
+		System.out.println("Select several files to find out the lowest humidity:");
+		
+		System.out.println("****************************************************");	
+		CSVRecord csv = lowestHumidityInManyFiles();
+		
+		System.out.println("The lowest humidity in File is: " + csv.get("Humidity") +" at " + csv.get("DateUTC") );
+		
+	}//end  testLowestHumidityInManyFiles() method
+
+
+
+
+
+
 	//teset lowest humidity in File() method;
 	private void testLowestHumidityInFile() {
 		// TODO Auto-generated method stub
