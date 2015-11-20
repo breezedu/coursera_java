@@ -29,7 +29,7 @@ public class Week04_miniProject {
 		
 		
 		//1st Modify the method totalBirths, print out number of girls/boys and total
-		System.out.println("\n Problem 1: printout number of girls/boys, and total" );
+		System.out.println("\n Part 1: printout number of girls/boys, and total" );
 		
 		System.out.println("Q#1: Select year 1900: ");
 		miniP.totalBirths();
@@ -41,7 +41,7 @@ public class Week04_miniProject {
 		//an integer named year, a string named name, and a string named gender 
 		//(F for female and M for male). 
 		//This method returns the rank of the name in the file for the given gender
-		System.out.println("\n Problem 2: get rank by name");
+		System.out.println("\n Part 2: get rank by name");
 		
 
 		int year = 1960;
@@ -113,7 +113,7 @@ public class Week04_miniProject {
 		//a string name, and a string named gender (F for female and M for male). 
 		//This method selects a range of files to process and returns an integer, 
 		//the year with the highest rank for the name and gender.
-		System.out.println("\n Problem 5: yearOfHighestRank");
+		System.out.println("\n Part 5: yearOfHighestRank");
 		
 		name = "Genevieve"; 
 		gender = "F";
@@ -237,21 +237,25 @@ public class Week04_miniProject {
 			
 			//get the FileResource
 			FileResource fr = new FileResource(fi);
-			
-			int currRank = 0;
+			int currRank = -1;
+			int pivot = 0;
 			for(CSVRecord record : fr.getCSVParser(false)){
 				
 				if(record.get(1).equals(gender)) {
 					
-					currRank++;
+					pivot++;
 								
-					if(record.get(0).equals(name)) break;
+					if(record.get(0).equals(name)) {
+						currRank = pivot;
+						break;
+					}
 					
 				}
+				
 			}//end for loop;
 			
 			//int currRank = getRank(year, name, gender);
-			System.out.println("  At year " + year + " name " + name + " gender " + gender + " ranks " + currRank + ". ");
+		//	System.out.println("  At year " + year + " name " + name + " gender " + gender + " ranks " + currRank + ". ");
 			
 			if(currRank != -1 && currRank < rank){
 				rank = currRank;
