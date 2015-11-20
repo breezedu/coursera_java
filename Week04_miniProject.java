@@ -145,9 +145,34 @@ public class Week04_miniProject {
 		
 		name = "Robert";
 		gender = "M";
-		System.out.println("Q#11: select all years:");
+		System.out.println("Q#12: select all years:");
 		aveRank = miniP.getAverageRank(name, gender);
 		System.out.println("The average rank of " + name + " gender " + gender + " is " + aveRank);
+		
+		
+		
+		
+		//7th  method getTotalBirthsRankedHigher that has three parameters: 
+		//an integer named year, a string named name, and a string named gender (F for female and M for male). 
+		//This method returns an integer, the total number of births of those names with the same gender and same year 
+		//who are ranked higher than name
+		System.out.println("Q13: select year 2012: ");
+		year = 2012;
+		name = "Ethan";
+		gender = "M";
+				
+		int totalBirthHigher = getTotalBirthsRankedHigher(year, name, gender);
+		System.out.println("The total " + gender + " births at year " + year + " ranks higher than " + name + " is: " + totalBirthHigher);
+		
+		
+		System.out.println("Q14: select year 2012: ");
+		year = 2012;
+		name = "Ethan";
+		gender = "M";
+				
+		totalBirthHigher = getTotalBirthsRankedHigher(year, name, gender);
+		System.out.println("The total " + gender + " births at year " + year + " ranks higher than " + name + " is: " + totalBirthHigher);
+		
 		
 		
 	}//end of main();
@@ -156,6 +181,39 @@ public class Week04_miniProject {
 	
 	
 	
+
+	/************
+	 *  method getTotalBirthsRankedHigher that has three parameters: 
+	 *  an integer named year, a string named name, and a string named gender (F for female and M for male). 
+	 *  This method returns an integer, the total number of births of those names 
+	 *  with the same gender and same year who are ranked higher than name
+	 * @param year
+	 * @param name
+	 * @param gender
+	 * @return
+	 */
+	private static int getTotalBirthsRankedHigher(int year, String name, String gender) {
+		// TODO Auto-generated method stub
+		FileResource fr = new FileResource();
+		
+		int sum = 0;
+		for(CSVRecord record : fr.getCSVParser(false)){
+			
+			if(record.get(1).equals(gender)){
+				
+				if(record.get(0).equals(name)) return sum;
+				
+				sum += Integer.parseInt(record.get(2));
+								
+			}//end if record euqals gender condition;
+			
+		}//end for CSV record record;
+		
+		return sum;
+	}//end getTotalBirthsRankedHigher() method;
+
+	
+
 
 	/******************
 	 * Question 6:
